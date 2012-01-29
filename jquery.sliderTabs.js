@@ -37,7 +37,8 @@
 			$contentDivsContainer,
 			$leftArrow,
 			$rightArrow;
-		var selectLock = false;
+		var selectLock = false,
+			heightLock = true;
 
 		plugin.init = function(){
 			plugin.settings = $.extend({}, defaults, options);
@@ -95,6 +96,8 @@
 
 			reorderPanels();
 
+			resizePanels();
+
 			// When tab is clicked
 			$container.delegate('.ui-slider-tabs-list li a', 'click', function(){
 				if(!$(this).parent().hasClass('selected') && !selectLock){
@@ -129,6 +132,24 @@
 						break;
 				}
 			});
+
+			// Make responsive to changes in dimensions
+			var lastTabWrapperWidth = $tabsListWrapper.width();
+			setInterval(function(){
+				if($tabsListWrapper.width() != lastTabWrapperWidth){
+					resizeTabsList();
+					resizePanels();
+				}
+				lastTabWrapperWidth = $tabsListWrapper.width();
+			}, 1000);
+
+			
+			setInterval(function(){
+				var $panel = $contentDivsContainer.children('.selected');
+				if($panel.outerHeight() > $contentDivsContainer.outerHeight() && heightLock)
+					resizeContentContainer($panel);
+			}, 1000);
+			
 		}
 
 		/*
@@ -136,6 +157,7 @@
 		 */
 
 		plugin.selectTab = function(tab){
+			heightLock = false;
 			var $clicked = (typeof tab === 'number') ? $tabsList.children("li:nth-child("+tab+")") : tab;
 			var targetId = ($clicked.find('a').attr('href')).substr(1);
 			var $targetPanel = $contentDivsContainer.children("#"+targetId);
@@ -231,16 +253,17 @@
 			else var trans = plugin.settings.transition;
 			panel.animate(panelAnimationCSS($contentDivsContainer.width())['hide'][trans], plugin.settings.transitionSpeed, function(){
 				panel.hide();
-				panel.removeClass(plugin.settings.classes.panelActive);
+				panel.removeClass(plugin.settings.classes.panelActive).removeClass('selected');
 				selectLock = false;
 				reorderPanels();
 			});
 		};
 		var showPanel = function(panel){
 			panel.show();
-			panel.addClass(plugin.settings.classes.panelActive);
+			panel.addClass(plugin.settings.classes.panelActive).addClass('selected');
 			panel.animate(panelAnimationCSS($contentDivsContainer.width())['show'][plugin.settings.transition], plugin.settings.transitionSpeed, function(){
 				selectLock = false;
+				heightLock = true;
 				reorderPanels();
 			});
 		};
@@ -279,6 +302,10 @@
 			else hideArrows();
 		}
 
+		var resizePanels = function(){
+			$contentDivs.width($contentDivsContainer.width() - ($contentDivs.outerWidth() - $contentDivs.width()));
+		};
+
 		// Get height of a hidden element
 		var actualHeight = function(element){
 			var prevCSS = {
@@ -291,7 +318,7 @@
 				'left': -5000,
 				'position': 'absolute'
 			});
-			var height = element.height();
+			var height = element.outerHeight();
 			element.css(prevCSS);
 			return height;
 		};
