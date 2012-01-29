@@ -3,7 +3,7 @@ jQuery SliderTabs
 
 Slider Tabs is a flexible jQuery plugin for sliding tabs.
 
-Using
+Usage
 -----
 
 SliderTabs is pretty easy to use. First create a `<div>` element with a `<ul>` containing x abount of tabs, and x `<div>` elements after that as the associated panels. The complete HTML markup should look similar to below. 
@@ -29,3 +29,33 @@ SliderTabs is pretty easy to use. First create a `<div>` element with a `<ul>` c
           <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
         </div>
     </div>
+
+Then call `sliderTabs()` on the div you just created like so:
+
+	$("#mySliderTabs").sliderTabs();
+
+or specify options to customize the tab slider. The defaults are shown below.
+
+	$("#mySliderTabs").sliderTabs({
+		arrowWidth: 35,
+		classes: {
+			leftArrow: '',
+			panel: '',
+			panelActive: '',
+			panelsContainer: '',
+			rightArrow: '',
+			tab: '',
+			tabActive: '',	
+			tabsList: '',
+		},
+		defaultTab: 1,
+		height: '',
+		position: "top",
+		tabHeight: 30,
+		tabSliders: true,
+		tabSlideLength: 100,
+		tabSlideSpeed: 200,
+		transition: 'fade',
+		transitionSpeed: 200,
+		width: ''
+	});
