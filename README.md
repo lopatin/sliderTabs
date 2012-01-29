@@ -76,6 +76,3 @@ Throw in an options object to customize the tab slider. The defaults and explana
 		transitionSpeed: 200,			// Time (in milliseconds) of the transition animation
 		width: ''						// Width in pixels of the whole widget
 	});
-
-
-![Test image](http://1.envato-static.com/images/codecanyon/logo-dark.png)
