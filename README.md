@@ -3,6 +3,20 @@ jQuery SliderTabs
 
 Slider Tabs is a flexible jQuery plugin for sliding tabs.
 
+Setup
+-----
+
+Only 3 files are required to use SliderTabs. One of which is jQuery so in the `<head>` section of your website, include the jQuery and SliderTabs scripts
+
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+  	<script src="jquery.sliderTabs.js"></script>
+
+As well as the jquery.sliderTabs.css stylesheet included in the styles folder
+
+	<link rel="stylesheet" href="styles/jquery.sliderTabs.css">
+
+Now you're ready to build your first SliderTab!
+
 Usage
 -----
 
@@ -57,8 +71,8 @@ Throw in an options object to customize the tab slider. The defaults and explana
 		tabHeight: 30,					// Height of the tabs bar and arrows in pixels
 		tabSliders: true,				// Use sliding tabs. If false, overflow tabs are hidden
 		tabSlideLength: 100,			// Length in pixels to slide tabs when an arrow is clicked
-		tabSlideSpeed: 200,				// Length of the tab sliding animation in milliseconds
+		tabSlideSpeed: 200,				// Time (in milliseconds) of the tab sliding animation
 		transition: 'slide',			// 'slide' or 'fade': The transition to use when changing panels
-		transitionSpeed: 200,			// Length of the transition animation in milliseconds
+		transitionSpeed: 200,			// Time (in milliseconds) of the transition animation
 		width: ''						// Width in pixels of the whole widget
 	});
