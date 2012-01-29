@@ -20,7 +20,7 @@ Now you're ready to build your first SliderTab!
 Usage
 -----
 
-SliderTabs is pretty easy to use. First create a `<div>` element with a `<ul>` containing x abount of tabs, and x `<div>` elements after that as the associated panels. Note that the `href` attribute of the tab links must be of the format "#Id-of-panel-div" to link tabs to their content panels. The complete HTML markup should look similar to below. 
+SliderTabs is pretty easy to use. First create a `<div>` element with a `<ul>` containing x abount of tabs, and x `<div>` elements after that as the associated panels. Note that the `href` attribute of the tab links must be of the format `#Id-of-panel-div` to link tabs to their content panels. The complete HTML markup should look similar to below. 
 
 	<div id="mySliderTabs">
         <ul>
@@ -76,3 +76,6 @@ Throw in an options object to customize the tab slider. The defaults and explana
 		transitionSpeed: 200,			// Time (in milliseconds) of the transition animation
 		width: ''						// Width in pixels of the whole widget
 	});
+
+
+![Test image](http://1.envato-static.com/images/codecanyon/logo-dark.png)
