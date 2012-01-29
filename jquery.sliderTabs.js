@@ -291,7 +291,7 @@
 				'left': -5000,
 				'position': 'absolute'
 			});
-			var height = element.height();
+			var height = element.outerHeight();
 			element.css(prevCSS);
 			return height;
 		};

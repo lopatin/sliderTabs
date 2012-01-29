@@ -85,6 +85,7 @@
 	top: 0;
 	left: 0;
 	width: 100%;
+	padding: 10px;
 }
 
 .ui-slider-left-arrow, .ui-slider-right-arrow, .ui-slider-left-arrow.edge:hover, .ui-slider-right-arrow.edge:hover{
