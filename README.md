@@ -1,7 +1,14 @@
 jQuery SliderTabs
 =================
 
-Slider Tabs is a flexible jQuery plugin for sliding tabs.
+SliderTabs is a flexible jQuery plugin for sliding tabs.
+
+Why?
+----
+
+The goal of SliderTabs isn't to pollute the jQuery plugins world with another tabs plugin, but to solve the problem of having too many tabs in one area. It does fall back to a regular tab layout when no overflow ocurrs. I made this plugin because currently the only solutions to this problem are paid scripts. Below is a screenshot of the default theme.
+
+![Default theme](screen1.png)
 
 Setup
 -----
