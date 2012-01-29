@@ -11,7 +11,6 @@ The goal of SliderTabs isn't to pollute the jQuery world with another tabs plugi
 ![Default theme](http://lopatin.github.com/sliderTabs/screen1.PNG)
 
 ### Features
-
 - Fully customizable with CSS
 - Multiple panel transition effects
 - Auto height adjustment
@@ -19,7 +18,6 @@ The goal of SliderTabs isn't to pollute the jQuery world with another tabs plugi
 - Cross browser compatible
 
 ### To do
-
 - AJAX loading
 - Auto play
 
