@@ -30,32 +30,35 @@ SliderTabs is pretty easy to use. First create a `<div>` element with a `<ul>` c
         </div>
     </div>
 
-Then call `sliderTabs()` on the div you just created like so:
+Then call `sliderTabs()` on the div you just created like below.
 
 	$("#mySliderTabs").sliderTabs();
 
-or specify options to customize the tab slider. The defaults are shown below.
+Options
+-------
+
+Throw in an options object to customize the tab slider. The defaults and explanations are shown below.
 
 	$("#mySliderTabs").sliderTabs({
-		arrowWidth: 35,
-		classes: {
-			leftArrow: '',
-			panel: '',
-			panelActive: '',
-			panelsContainer: '',
-			rightArrow: '',
-			tab: '',
-			tabActive: '',	
-			tabsList: '',
+		arrowWidth: 35,					// Width of tab arrows in pixels
+		classes: {						// Custom classes to attach
+			leftArrow: '',				//  - Left arrow
+			panel: '',					//  - All content panels
+			panelActive: '',			//  - The selected content panel
+			panelsContainer: '',		//  - Parent div containing all hidden and shown panels
+			rightArrow: '',				//  - Right arrow
+			tab: '',					//  - All tabs (<li> elements)
+			tabActive: '',				//  - The selected tab
+			tabsList: '',				//  - The list of tabs (<ul> element)
 		},
-		defaultTab: 1,
-		height: '',
-		position: "top",
-		tabHeight: 30,
-		tabSliders: true,
-		tabSlideLength: 100,
-		tabSlideSpeed: 200,
-		transition: 'fade',
-		transitionSpeed: 200,
-		width: ''
+		defaultTab: 1,					// Index of the default tab OR the jQuery object of the <li> element
+		height: '',						// Integer or '': Height in pixels of the whole widget. '' means fluid height
+		position: "top",				// 'top' or 'bottom': Orientation of the tabs relative to the content
+		tabHeight: 30,					// Height of the tabs bar and arrows in pixels
+		tabSliders: true,				// Use sliding tabs. If false, overflow tabs are hidden
+		tabSlideLength: 100,			// Length in pixels to slide tabs when an arrow is clicked
+		tabSlideSpeed: 200,				// Length of the tab sliding animation in milliseconds
+		transition: 'slide',			// 'slide' or 'fade': The transition to use when changing panels
+		transitionSpeed: 200,			// Length of the transition animation in milliseconds
+		width: ''						// Width in pixels of the whole widget
 	});

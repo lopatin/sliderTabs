@@ -25,7 +25,7 @@
 			tabSliders: true,
 			tabSlideLength: 100,
 			tabSlideSpeed: 200,
-			transition: 'fade',
+			transition: 'slide',
 			transitionSpeed: 200,
 			width: ''
 		};
