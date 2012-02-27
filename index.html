@@ -7,81 +7,501 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
+  <title>jQuery SliderTabs - </title>
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <link href="pp/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="pp/prettify.js"></script>
+
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-  <!-- CSS concatenated and minified via ant build script-->
-  <link rel="stylesheet" href="styles/jquery.sliderTabs.css">
-  <!-- end CSS-->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/jquery.sliderTabs.min.css">
+  <link rel="stylesheet" href="lpmain.css">
+  <link rel="stylesheet" href="css/ui-lightness/jquery-ui.custom.css">
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="jquery.sliderTabs.js"></script>
+  <script src="jquery-ui.custom.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="jquery.sliderTabs.min.js"></script>
+  <script src="lpmain.js"></script>
 
   <script>
     $(document).ready(function(){
-      var tabs = $("div#mySliderTabs").sliderTabs();
+
+      var tabs = $("div#mySliderTabs").sliderTabs({
+        autoplay: 6000,
+        indicators: true,
+        panelArrows: true,
+        panelArrowsShowOnHover: true
+      });
+
+      var demo = $("div#demoSlider").sliderTabs({
+        indicators: true,
+        panelArrows: true,
+        panelArrowsShowOnHover: true,
+        tabs: false,
+        classes: {
+          panel: 'demoPanel'
+        }
+      });
+
+/*      $("#mySliderTabsContainer").resizable({
+        maxHeight: 200,
+        minHeight: 200,
+        maxWidth: 605
+      });
+*/
+      prettyPrint();
     });
+
+    $(document).delegate(".nav-list li a", "click", function(){
+      $(this).parent().siblings().removeClass("active");
+      $(this).parent().addClass("active");
+    });
+
+
   </script>
 
   <style>
-    #container{
-      width: 800px;
-      margin: 0 auto;
+    .demoPanel{
+      padding: 0;
+      background-color: #222;
+      text-align: center;
+    }
+    .demoPanel img{
+      width: 100%;
+    }
+
+    pre.prettyprint{
+      padding: 4px;
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 0px #fff;
+      background-color: #fafafa;
+      min-width: 155px;
+    }
+
+    table.optionsTable{
+      width: 100%;
+    }
+    table.optionsTable{
+
+    }
+
+    h2{
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0px 1px 0px #fff;
     }
   </style>
+
 </head>
 
 <body>
 
-  <div id="container">
-    <div id="main" role="main">
-      <h1>My test slider tabs</h1>
-      <div id="mySliderTabs">
-        <ul>
-          <li><a href="#theOffice">The Office</a></li>
-          <li><a href="#parks">Parks and Recreation</a></li>
-          <li><a href="#southPark">South Park</a></li>
-          <li><a href="#familyGuy">Family Guy</a></li>
-          <li><a href="#mother">How I Met Your Mother</a></li>
-          <li><a href="#freshPrince">Fresh prince</a></li>
-          <li><a href="#archer">Archer</a></li>
-        </ul>
-        <div id="theOffice">
-          <h3>Info about The Office</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=8465766094";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<a href="https://github.com/lopatin/sliderTabs"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+
+<div class="container">
+
+
+    
+    <div class="row">
+
+      <div class="span8 content">
+        <div id="header" class="header">
+          <img src="images/logo.png" /><br />
+          <span>The responsive multi-purpose content slider</span>
         </div>
-        <div id="parks">
-          <h3>Info about Parks and Recreation</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+        <hr />
+
+        <div id="home">
+          <h1>Home</h1>
+          <p>Tabs. Slideshows. Featured content sliders. Isn't it all the same thing? SliderTabs is a customizable jQuery plugin that allows you to create a content slider that can turn into a tabs plugin or a custom slider by changing a few options. Let SliderTabs the scaffolding for your next custom slider or set of tabs.</p>
+
+          <p>This is still a relatively new project so if you discover a bug, please let me know on this project's <a href="https://github.com/lopatin/sliderTabs">Github page</a>!</p>
+
+          <!-- Bullet points -->
+          <table class="bullet-points-table" style="width: 100%;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <ul class="bullet-points">
+                <li>Easy to setup and customize</li>
+                <li>Fully responsive</li>
+                <li>Multiple sliders</li>
+                <li>Free under the MIT license</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="bullet-points">
+                <li>Autoplay</li>
+                <li>Multiple transitions and easing</li>
+                <li>Create an unlimited number of tabs</li>
+                <li>Cross-browser support</li>
+              </ul>
+            </td>
+          </tr>
+          </table>
+
+          <br />
+          <div id="mySliderTabsContainer" style="height: 200px;">
+            <!-- Sample slider -->
+            <div id="mySliderTabs">
+              <ul>
+                <li><a href="#mother">How I Met Your Mother</a></li>
+                <li><a href="#parks">Parks and Recreation</a></li>
+                <li><a href="#theOffice">The Office</a></li>
+                <li><a href="#southPark">South Park</a></li>
+                <li><a href="#house">House</a></li>
+                <li><a href="#terranova">Terra Nova</a></li>
+                <li><a href="#30rock">30 Rock</a></li>
+              </ul>
+
+              <div id="mother">
+                <h3>Info about How I Met Your Mother</h3>
+                <p>How I Met Your Mother is an American sitcom that premiered on CBS on September 19, 2005, created by Craig Thomas and Carter Bays, and directed by Pamela Fryman.</p>
+              </div>
+              <div id="parks">
+                <img style="width: 100px; padding: 10px; float: left;" src="http://glueimg.s3.amazonaws.com/stickers/huge/nbc/parks_and_recreation_pawnee_rangers.png" />
+                <h3>Info about Parks and Recreation</h3>
+                <p>Parks and Recreation is an American comedy television series on NBC led by Amy Poehler who stars as Leslie Knope.</p> 
+                <p>Although it began as a spin-off to The Office, Daniels and Schur have since created a stand-alone series that shares that show's single-camera, mockumentary filming style, but differs in its optimistic tone.</p>
+              </div>
+              <div id="theOffice">
+                <h3>Info about The Office</h3>
+                <p>The Office is a popular mockumentary/sitcom that was first made in the United Kingdom and has now been remade in many other countries, with overall viewership in the hundreds of millions worldwide. The most popular and lengthy version has proven to be the U.S. version, which has lasted for eight seasons and 164 episodes as of January 2012. The German version is also still in production and has seen 46 episodes over five seasons.</p>
+              </div>
+              <div id="southPark">
+                <h3>Info about South Park</h3>
+                <p>South Park is an American animated sitcom created by Trey Parker and Matt Stone for the Comedy Central television network. Intended for mature audiences, the show has become famous for its crude language and dark, surreal humor that lampoons a wide range of topics. The ongoing narrative revolves around four boys—Stan Marsh, Kyle Broflovski, Eric Cartman and Kenny McCormick—and their bizarre adventures in and around the titular Colorado town.</p>
+              </div>
+              <div id="house">
+                <h3>Info about House</h3>
+                <p>House (also known as House, M.D.) is an American television medical drama that debuted on the Fox network on November 16, 2004. The show's central character is Dr. Gregory House (Hugh Laurie), an unconventional and misanthropic medical genius who heads a team of diagnosticians at the fictional Princeton-Plainsboro Teaching Hospital (PPTH) in New Jersey.</p>
+              </div>
+              <div id="terranova">
+                <h3>Info about Terra Nova</h3>
+                <p>Terra Nova is an American science fiction drama television series. It premiered on September 26, 2011 with a two-hour premiere, and the first season concluded on December 19, 2011 with a two-hour finale. The series follows the Shannon family as they travel 85 million years into the past. The series is based on an idea by British writer Kelly Marcel.</p>
+              </div>
+              <div id="30rock">
+                <h3>Info about 30 Rock</h3>
+                <p>30 Rock is an American television comedy series created by Tina Fey that airs on NBC. The series, which is loosely based on Fey's experiences as head writer for Saturday Night Live, takes place behind the scenes of a fictional live sketch comedy series depicted as airing on NBC. The series' name refers to 30 Rockefeller Plaza in New York City, the address of the GE Building, in which the NBC Studios are located. This series is produced by Broadway Video and Little Stranger, Inc., in association with NBCUniversal.</p>
+              </div>
+            </div>
+
+            <div class="clear: both;">
+            </div>
+          </div>
+
         </div>
-        <div id="southPark">
-          <h3>Info about South Park</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+
+        <div id="getting-started">
+          <h1>Getting Started</h1>
+          <h3>Step 1: Including the files</h3>
+          <p>Unzip the package into your working directory and include them in your head section like this. Make sure you include jQuery before the plugin.</p>
+          <pre class="prettyprint">
+&#60;head&#62;
+&#60;link rel="stylesheet" href="styles/jquery.sliderTabs.min.css"&#62;
+&#60;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&#62;&#60;/script&#62;
+&#60;script src="js/jquery.sliderTabs.min.js"&#62;&#60;/script&#62;
+&#60;/head&#62;</pre>
+          <h3>Step 2: Markup</h3>
+          <p>First make a div element including first a list of links for tabs and the same number of div elements afterwards for panels. To link the div panels to the tabs, make sure that the href attribute of the tab links is '#IdOfPanel'. Note that list of tabs is required markup even if you plan on disabling tabs as other parts of the plugin like indicators depend on these declarations. Here's a basic example.</p>
+          <pre class="prettyprint">
+&#60;div id="mySliderTabs"&#62;
+  &#60;!-- Unordered list representing the tabs --&#62;
+  &#60;ul&#62;
+    &#60;li&#62;&#60;a href="#canyon"&#62;The Grand Canyon&#60;/a&#62;&#60;/li&#62;
+    &#60;li&#62;&#60;a href="#taj"&#62;The Taj Mahal&#60;/a&#62;&#60;/li&#62;
+    &#60;li&#62;&#60;a href="#bigben"&#62;Big Ben&#60;/a&#62;&#60;/li&#62;
+  &#60;/ul&#62;
+
+  &#60;!-- Afterwards, include the div panels representing the panels of our slider --&#62;
+  &#60;div id="canyon"&#62;
+    &#60;h3&#62;The Grand Canyon&#60;/h3&#62;
+    &#60;!-- rest of the panel content --&#62;
+  &#60;/div&#62;
+  &#60;div id="taj"&#62;
+    &#60;h3&#62;The Taj Mahal&#60;/h3&#62;
+    &#60;!-- rest of the panel content --&#62;
+  &#60;/div&#62;
+  &#60;div id="bigben"&#62;
+    &#60;h3&#62;Big Ben&#60;/h3&#62;
+    &#60;!-- rest of the panel content --&#62;
+  &#60;/div&#62;
+&#60;/div&#62;</pre>
+          <h3>Step 3: Invoking the plugin</h3>
+          <p>Then select the container div with jQuery and call sliderTabs() on it.</p>
+          <pre class="prettyprint">
+var slider = $("div#mySliderTabs").sliderTabs();</pre>
+          <p>... or specify some options. View a full list of available options in the next section.</p>
+          <pre class="prettyprint">
+var slider = $("div#mySliderTabs").sliderTabs({
+  autoplay: true,
+  mousewheel: false,
+  position: "bottom"
+});</pre>
+
         </div>
-        <div id="familyGuy">
-          <h3>Info about South Park</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+
+        <div id="options">
+          <h1>Options</h1>
+          <table class="optionsTable table table-bordered table-striped">
+            <tr>
+              <th>Key</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>autoplay</td>
+              <td>false</td>
+              <td>false or integer - Number of milliseconds betweeen transitions to the next tab.</td>
+            </tr>
+            <tr>
+              <td>tabArrowWidth</td>
+              <td>35</td>
+              <td>integer - Width in pixels of the tab arrows.</td>
+            </tr>
+            <tr>
+              <td>classes</td>
+              <td><pre class="prettyprint">{
+  leftTabArrow: '',
+  panel: '',
+  panelActive: '',
+  panelsContainer: '',
+  rightTabArrow: '',
+  tab: '',
+  tabActive: '',  
+  tabsList: ''
+}</pre>
+            </td>
+              <td>Additional classes to add to important elements. Useful for custom styling.</td>
+            </tr>
+            <tr>
+              <td>defaultTab</td>
+              <td>1</td>
+              <td>integer - Index of the tab selected by default. (1-indexed)</td>
+            </tr>
+            <tr>
+              <td>height</td>
+              <td>null</td>
+              <td>integer - Set a static value for the height of the whole widget in pixels.</td>
+            </tr>
+            <tr>
+              <td>indicators</td>
+              <td>false</td>
+              <td>boolean - Show panel indicators.</td>
+            </tr>
+            <tr>
+              <td>mousewheel</td>
+              <td>true</td>
+              <td>boolean - Allow scrolling to the next and previous panel using the mousewheel.</td>
+            </tr>
+            <tr>
+              <td>position</td>
+              <td>'top'</td>
+              <td>'top' or 'bottom' - Position of the tabs relative to the panel container</td>
+            </tr>
+            <tr>
+              <td>panelArrows</td>
+              <td>false</td>
+              <td>boolean - Show the next and previous panel arrows.</td>
+            </tr>
+            <tr>
+              <td>panelArrowsShowOnHover</td>
+              <td>false</td>
+              <td>boolean - Hide the panel arrows unless the panel container is being hovered over.</td>
+            </tr>
+            <tr>
+              <td>tabs</td>
+              <td>true</td>
+              <td>boolean - Use tabs</td>
+            </tr>
+            <tr>
+              <td>tabHeight</td>
+              <td>30</td>
+              <td>integer - Height in pixels of the tabs container</td>
+            </tr>
+            <tr>
+              <td>tabArrows</td>
+              <td>true</td>
+              <td>boolean - Use tab arrows when tabs overflow out of their container.</td>
+            </tr>
+            <tr>
+              <td>tabSlideLength</td>
+              <td>100</td>
+              <td>integer - Number of pixels to slide the tabs when using the tab arrows.</td>
+            </tr>
+            <tr>
+              <td>tabSlideSpeed</td>
+              <td>200</td>
+              <td>integer - Number of milliseconds of the tab sliding transition.</td>
+            </tr>
+            <tr>
+              <td>transition</td>
+              <td>'slide'</td>
+              <td>'slide' or 'fade' - Transition to use for panel transitions.</td>
+            </tr>
+            <tr>
+              <td>transitionEasing</td>
+              <td>'easeOutCubic'</td>
+              <td>string - Name of the easing function to use for panel transitions. Use any easing functions included with jQuery UI. Note that there is no need to actually include jQuery UI.</td>
+            </tr>
+            <tr>
+              <td>transitionSpeed</td>
+              <td>500</td>
+              <td>integer - Number of milliseconds of the panel transition.</td>
+            </tr>
+            <tr>
+              <td>width</td>
+              <td>null</td>
+              <td>integer - Set a static width in pixels for the widget.</td>
+            </tr>
+          </table>
         </div>
-        <div id="mother">
-          <h3>Info about South Park</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+
+        <div id="examples">
+          <h1>Examples</h1>
+          <h2>Simple image slider</h2>
+          <h3>Demo</h3>
+
+          <div id="demoSlider">
+            <ul>
+              <li><a href="#pyramid"></a></li>
+              <li><a href="#gardens"></a></li>
+              <li><a href="#zeus"></a></li>
+              <li><a href="#temple"></a></li>
+              <li><a href="#mausoleum"></a></li>
+              <li><a href="#colossus"></a></li>
+              <li><a href="#lighthouse"></a></li>
+            </ul>
+
+            <div id="pyramid"><img src="images/pyramid.jpg" /></div>
+
+            <div id="gardens"><img src="images/gardens.jpg" /></div>
+
+            <div id="zeus"><img src="images/zeus.jpg" /></div>
+
+            <div id="temple"><img src="images/miniaturk.jpg" /></div>
+
+            <div id="mausoleum"><img src="images/mausoleum.jpg" /></div>
+
+            <div id="colossus"><img src="images/colossus.jpg" /></div>
+
+            <div id="lighthouse"><img src="images/lighthouse.jpg" /></div>
+          </div>
+          <br />
+          <h3>Code</h3>
+          <h4>HTML:</h4>
+          <pre class="prettyprint">
+&#60;div id="demoSlider"&#62;
+  &#60;ul&#62;
+    &#60;li&#62;&#60;a href="#pyramid"&#62;&#60;/a&#62;&#60;/li&#62;
+    &#60;li&#62;&#60;a href="#gardens"&#62;&#60;/a&#62;&#60;/li&#62;
+    &#60;li&#62;&#60;a href="#zeus"&#62;&#60;/a&#62;&#60;/li&#62;
+    &#60;li&#62;&#60;a href="#temple"&#62;&#60;/a&#62;&#60;/li&#62;
+    &#60;li&#62;&#60;a href="#mausoleum"&#62;&#60;/a&#62;&#60;/li&#62;
+    &#60;li&#62;&#60;a href="#colossus"&#62;&#60;/a&#62;&#60;/li&#62;
+    &#60;li&#62;&#60;a href="#lighthouse"&#62;&#60;/a&#62;&#60;/li&#62;
+  &#60;/ul&#62;
+
+  &#60;div id="pyramid"&#62;&#60;img src="images/pyramid.jpg" /&#62;&#60;/div&#62;
+
+  &#60;div id="gardens"&#62;&#60;img src="images/gardens.jpg" /&#62;&#60;/div&#62;
+
+  &#60;div id="zeus"&#62;&#60;img src="images/zeus.jpg" /&#62;&#60;/div&#62;
+
+  &#60;div id="temple"&#62;&#60;img src="images/miniaturk.jpg" /&#62;&#60;/div&#62;
+
+  &#60;div id="mausoleum"&#62;&#60;img src="images/mausoleum.jpg" /&#62;&#60;/div&#62;
+
+  &#60;div id="colossus"&#62;&#60;img src="images/colossus.jpg" /&#62;&#60;/div&#62;
+
+  &#60;div id="lighthouse"&#62;&#60;img src="images/lighthouse.jpg" /&#62;&#60;/div&#62;
+&#60;/div&#62;</pre>
+
+          <h4>Javascript:</h4>
+          <pre class="prettyprint">
+var demo = $("div#demoSlider").sliderTabs({
+  indicators: true,
+  panelArrows: true,
+  panelArrowsShowOnHover: true,
+  tabs: false,
+  classes: {
+    panel: 'demoPanel'
+  }
+});</pre>
+          
+          <h4>CSS:</h4>
+          <pre class="prettyprint">
+.demoPanel{
+  padding: 0;
+  background-color: #222;
+  text-align: center;
+}
+.demoPanel img{
+  width: 100%;
+}</pre>
+          <br />
+          <h2>Websites using SliderTabs</h2>
+          <p>SliderTabs powers the landing page for my startup <a target="_none" href="http://mystudycloud.com">StudyCloud</a>. It's used for both the main slider and the embedded sliders in the first two sections.</p>
         </div>
-        <div id="freshPrince">
-          <h3>Info about South Park</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
-        </div>
-        <div id="archer">
-          <h3>Info about South Park</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+
+        <div style="height: 300px"></div>
+      </div>
+
+      <div class="span4">
+        <div class="sidebar-wrapper">
+          <div class="sidebar">
+
+            <ul class="nav nav-list">
+              <li class="nav-header">
+                Documentation
+              </li>
+              <li class="active"><a href="#header">Home</a></li>
+              <li><a href="#getting-started">Getting started</a></li>
+              <li><a href="#options">Options</a></li>
+              <li><a href="#examples">Examples</a></li>
+
+              <li class="nav-header">
+                Downloads
+              </li>
+              <a style="padding: 10px;" class="btn btn-success">
+              <span style="font-size: 19px;">Download SliderTabs</span>
+              <br /><span style="opacity: .9;">Version 1.1 &nbsp;&nbsp;&nbsp; Size: 13kb</span></a>
+              
+              <div style="margin-top: 5px;" class="btn-group">
+                <a class="btn " href="#">Previous versions</a>
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">1.0 (11 Kb)</a></li>
+                </ul>
+              </div>
+
+              <br />
+              <li class="nav-header">
+                Links
+              </li>
+              <iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=lopatin&repo=sliderTabs&type=watch&count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
+              <div class="fb-like" data-href="http://lopatin.github.com/sliderTabs/" data-send="true" data-width="450" data-show-faces="true" data-font="arial"></div>
+              <a></a>
+            </ul>
+          </div>
         </div>
       </div>
+
     </div>
-  </div> <!--! end of #container -->
+</div>
 
 
   <!--[if lt IE 7 ]>
