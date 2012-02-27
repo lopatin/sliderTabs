@@ -14,10 +14,12 @@ The goal of SliderTabs isn't to pollute the jQuery world with another tabs plugi
 - Fully customizable with CSS
 - Multiple panel transition effects
 - Auto height adjustment
+- Responsive design to spontaneous size changes
 - Multiple instances
 - Cross browser compatible
 
 ### To do
+- Vertical tabs
 - AJAX loading
 - Auto play
 
