@@ -6,9 +6,7 @@ SliderTabs is a flexible jQuery plugin for sliding tabs.
 Why?
 ----
 
-The goal of SliderTabs isn't to pollute the jQuery world with another tabs plugin, but to solve the problem of having too many tabs in one area. It does fall back to a regular tab layout when no overflow ocurrs. I made this plugin because currently the only solutions to this problem are paid scripts. Below is a screenshot of the default theme.
-
-![Default theme](http://lopatin.github.com/sliderTabs/screen1.PNG)
+The goal of SliderTabs isn't to pollute the jQuery world with another tabs plugin but to create the possibility to create tabs, slideshows, featured content sliders, and more with one plugin. I hope this to be the last plugin you'll need to create slider type widgets. 
 
 ### Features
 - Fully customizable with CSS
@@ -17,12 +15,12 @@ The goal of SliderTabs isn't to pollute the jQuery world with another tabs plugi
 - Responsive design to spontaneous size changes
 - Multiple instances
 - Cross browser compatible
+- Autoplay
+- Mousewheel integration
 
 ### To do
 - Vertical tabs
 - AJAX loading
-- Auto play
-
 
 Setup
 -----
@@ -74,13 +72,44 @@ Options
 
 Throw in an options object to customize the tab slider. The defaults and explanations are shown below.
 
+	$("#mySliderTabs").sliderTabs{
+			autoplay: false,
+			classes: {							// Custom classes to attach
+				leftTabArrow: '',				//  - Left tab arrow
+				panel: ''						//  - All content panels
+				panelActive: '',				//  - The selected content panel
+				panelsContainer: '',			//  - Parent div containing all hidden and shown panels
+				rightTabArrow: '',				//  - Right tab arrow
+				tab: '',						//  - All tabs (<li> elements)
+				tabActive: '',					//  - The selected tab
+				tabsList: ''					//  - The list of tabs (<ul> element)
+			},
+			defaultTab: 1,						// Index of the default tab OR the jQuery object of the <li> 
+			height: null,						// Integer or '': Height in pixels of the whole widget. '' means fluid height
+			indicators: false,					// 
+			mousewheel: true,
+			panelArrows: false,
+			panelArrowsShowOnHover: false,
+			position: "top",
+			tabArrows: true,
+			tabArrowWidth: 35,					// Width of tab arrows in pixels
+			tabHeight: 30,
+			tabs: true,
+			tabSlideLength: 100,
+			tabSlideSpeed: 200,
+			transition: 'slide',
+			transitionEasing: 'easeOutCubic',
+			transitionSpeed: 500,
+			width: null
+		};
+
 	$("#mySliderTabs").sliderTabs({
-		arrowWidth: 35,					// Width of tab arrows in pixels
+		arrowWidth: 35,					
 		classes: {						// Custom classes to attach
 			leftArrow: '',				//  - Left arrow
 			panel: '',					//  - All content panels
 			panelActive: '',			//  - The selected content panel
-			panelsContainer: '',		//  - Parent div containing all hidden and shown panels
+			panelsContainer: '',		
 			rightArrow: '',				//  - Right arrow
 			tab: '',					//  - All tabs (<li> elements)
 			tabActive: '',				//  - The selected tab
