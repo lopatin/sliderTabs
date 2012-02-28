@@ -27,12 +27,12 @@ Setup
 
 Only 3 files are required to use SliderTabs. One of which is jQuery so in the `<head>` section of your website, include the jQuery and SliderTabs scripts
 
-  <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="jquery.sliderTabs.min.js"></script>
+   <script src="http://code.jquery.com/jquery.min.js"></script>
+   <script src="jquery.sliderTabs.min.js"></script>
 
 As well as the jquery.sliderTabs.css stylesheet included in the styles folder
 
-  <link rel="stylesheet" href="styles/jquery.sliderTabs.min.css">
+    <link rel="stylesheet" href="styles/jquery.sliderTabs.min.css">
 
 Now you're ready to build your first SliderTab!
 
@@ -43,27 +43,27 @@ Usage
 
 SliderTabs is pretty easy to use. First create a `<div>` element with a `<ul>` containing x amount of tabs, and x `<div>` elements after that as the associated panels. Note that the `href` attribute of the tab links must be of the format `#Id-of-panel-div` to link tabs to their content panels. The complete HTML markup should look similar to below. 
 
-  <div id="mySliderTabs">
-        <ul>
-          <li><a href="#theOffice">The Office</a></li>
-          <li><a href="#parks">Parks and Recreation</a></li>
-          <li><a href="#southPark">South Park</a></li>
-        </ul>
-        <div id="theOffice">
-          <h3>Info about The Office</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
-        </div>
-        <div id="parks">
-          <h3>Info about Parks and Recreation</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
-        </div>
-        <div id="southPark">
-          <h3>Info about South Park</h3>
-          <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
-        </div>
-    </div>
+    <div id="mySliderTabs">
+          <ul>
+            <li><a href="#theOffice">The Office</a></li>
+            <li><a href="#parks">Parks and Recreation</a></li>
+            <li><a href="#southPark">South Park</a></li>
+          </ul>
+          <div id="theOffice">
+            <h3>Info about The Office</h3>
+            <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+            <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+            <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+          </div>
+          <div id="parks">
+            <h3>Info about Parks and Recreation</h3>
+            <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+          </div>
+          <div id="southPark">
+            <h3>Info about South Park</h3>
+            <p>Aoapsinasof asghais fnasof ws9ufh isujn asiufhasiufasdf aoisufd asfdhasifd usdhf saiudfh</p>
+          </div>
+      </div>
 
 Then call `sliderTabs()` on the div you just created like below.
 
