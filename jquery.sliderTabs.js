@@ -9,11 +9,11 @@
  */
 
 
- (function( $ ){
+ (function( jQuery ){
 	/*
 	 * The sliderTabs tabs class
 	 */
-	$.sliderTabs = function(container, options){
+	jQuery.sliderTabs = function(container, options){
 		var plugin = this;
 
 		var defaults = {
@@ -48,17 +48,17 @@
 		};
 
 		// jQuery objects of important elements
-		var $container = $(container),
-			$indicators,
-			$tabsList,
-			$contentDivs,
-			$tabsListContainer,
-			$tabsListWrapper,
-			$contentDivsContainer,
-			$leftTabArrow,
-			$rightTabArrow,
-			$leftPanelArrow,
-			$rightPanelArrow;
+		var jQuerycontainer = jQuery(container),
+			jQueryindicators,
+			jQuerytabsList,
+			jQuerycontentDivs,
+			jQuerytabsListContainer,
+			jQuerytabsListWrapper,
+			jQuerycontentDivsContainer,
+			jQueryleftTabArrow,
+			jQueryrightTabArrow,
+			jQueryleftPanelArrow,
+			jQueryrightPanelArrow;
 
 		// Locks to stop out of sync behavior
 		var selectLock = false,
@@ -70,53 +70,53 @@
 		plugin.selectedTab = defaults.defaultTab;
 
 		plugin.init = function(){
-			settings = plugin.settings = $.extend({}, defaults, options);
-			$container.addClass('ui-slider-tabs');
+			settings = plugin.settings = jQuery.extend({}, defaults, options);
+			jQuerycontainer.addClass('ui-slider-tabs');
 
 			/* 
 			 * Rebuild structure of container
 			 */
-			$contentDivs = $container.children("div").addClass('ui-slider-tab-content').remove();
+			jQuerycontentDivs = jQuerycontainer.children("div").addClass('ui-slider-tab-content').remove();
 			
 			// Tabs
-			$tabsList = $container.children("ul").addClass('ui-slider-tabs-list').remove();
-			$tabsList.children("li").remove().appendTo($tabsList);
-			plugin.count = $tabsList.children('li').length;
-			$tabsListWrapper = $("<div class='ui-slider-tabs-list-wrapper'>");
-			$tabsListContainer = $("<div class='ui-slider-tabs-list-container'>").append($tabsList).appendTo($tabsListWrapper);
-			$tabsListContainer.find('li').css('height', settings.tabHeight+2);
-			$tabsListContainer.find('li a').css('height', settings.tabHeight+2);
+			jQuerytabsList = jQuerycontainer.children("ul,ol").addClass('ui-slider-tabs-list').remove();
+			jQuerytabsList.children("li").remove().appendTo(jQuerytabsList);
+			plugin.count = jQuerytabsList.children('li').length;
+			jQuerytabsListWrapper = jQuery("<div class='ui-slider-tabs-list-wrapper'>");
+			jQuerytabsListContainer = jQuery("<div class='ui-slider-tabs-list-container'>").append(jQuerytabsList).appendTo(jQuerytabsListWrapper);
+			jQuerytabsListContainer.find('li').css('height', settings.tabHeight+2);
+			jQuerytabsListContainer.find('li a').css('height', settings.tabHeight+2);
 			
 			// Tab arrows
-			$leftTabArrow = $("<a href='#' class='ui-slider-left-arrow'><div></div></a>").css({
+			jQueryleftTabArrow = jQuery("<a href='#' class='ui-slider-left-arrow'><div></div></a>").css({
 				'width': settings.tabArrowWidth,
 				'height': settings.tabHeight+2
-			}).appendTo($tabsListContainer).click(function(e){
+			}).appendTo(jQuerytabsListContainer).click(function(e){
 				plugin.slideTabs('right', settings.tabSlideLength);
 				return false;
 			});
-			$rightTabArrow = $("<a href='#' class='ui-slider-right-arrow'><div></div></a>").css({
+			jQueryrightTabArrow = jQuery("<a href='#' class='ui-slider-right-arrow'><div></div></a>").css({
 				'width': settings.tabArrowWidth,
 				'height': settings.tabHeight+2
-			}).appendTo($tabsListContainer).click(function(e){
+			}).appendTo(jQuerytabsListContainer).click(function(e){
 				plugin.slideTabs('left', settings.tabSlideLength);
 				return false;
 			});
 
 			// Content container
-			$contentDivsContainer = $("<div class='ui-slider-tabs-content-container'>").append($contentDivs);
+			jQuerycontentDivsContainer = jQuery("<div class='ui-slider-tabs-content-container'>").append(jQuerycontentDivs);
 
 			// Position the tabs on top or bottom
 			if(settings.position == 'bottom')
-				$container.append($contentDivsContainer).append($tabsListWrapper.addClass('bottom'));
+				jQuerycontainer.append(jQuerycontentDivsContainer).append(jQuerytabsListWrapper.addClass('bottom'));
 			else
-				$container.append($tabsListWrapper).append($contentDivsContainer);
+				jQuerycontainer.append(jQuerytabsListWrapper).append(jQuerycontentDivsContainer);
 			
 
 			if(settings.width)
-				$container.width(parseInt(settings.width));
+				jQuerycontainer.width(parseInt(settings.width));
 			if(settings.height)
-				$contentDivsContainer.height(parseInt(settings.height)- settings.tabHeight);
+				jQuerycontentDivsContainer.height(parseInt(settings.height)- settings.tabHeight);
 
 			// Create and show indicators
 			if(settings.indicators)
@@ -132,40 +132,40 @@
 			resizePanels();
 
 			// When tab is clicked
-			$container.delegate('.ui-slider-tabs-list li a', 'click', function(){
-				if(!$(this).parent().hasClass('selected') && !selectLock){
-					plugin.selectTab($(this).parent());
+			jQuerycontainer.delegate('.ui-slider-tabs-list li a', 'click', function(){
+				if(!jQuery(this).parent().hasClass('selected') && !selectLock){
+					plugin.selectTab(jQuery(this).parent());
 				}
 				return false;
 			});
 
 			// When indicator is clicked
-			if($indicators)
-				$indicators.delegate('.ui-slider-tabs-indicator', 'click', function(){
-					if(!$(this).hasClass('selected') && !selectLock)
-						plugin.selectTab($(this).index()+1);
+			if(jQueryindicators)
+				jQueryindicators.delegate('.ui-slider-tabs-indicator', 'click', function(){
+					if(!jQuery(this).hasClass('selected') && !selectLock)
+						plugin.selectTab(jQuery(this).index()+1);
 				});
 
 			// Set classes
-			$.each(settings.classes, function(i, c){
+			jQuery.each(settings.classes, function(i, c){
 				switch(i){
 					case 'leftTabArrow': 
-						$leftTabArrow.addClass(c);
+						jQueryleftTabArrow.addClass(c);
 						break;
 					case 'rightTabArrow':
-						$rightTabArrow.addClass(c);
+						jQueryrightTabArrow.addClass(c);
 						break;
 					case 'panel':
-						$contentDivs.addClass(c);
+						jQuerycontentDivs.addClass(c);
 						break;
 					case 'panelsContainer':
-						$contentDivsContainer.addClass(c);
+						jQuerycontentDivsContainer.addClass(c);
 						break;
 					case 'tab':
-						$tabsList.find('li').addClass(c);
+						jQuerytabsList.find('li').addClass(c);
 						break;
 					case 'tabsList':
-						$tabsList.addClass(c);
+						jQuerytabsList.addClass(c);
 						break;
 					default:
 						break;
@@ -178,32 +178,32 @@
 				positionPanelArrows();
 
 			if(settings.panelArrowsShowOnHover){
-				if($leftPanelArrow)
-					$leftPanelArrow.addClass('showOnHover');
-				if($rightPanelArrow)
-					$rightPanelArrow.addClass('showOnHover');
+				if(jQueryleftPanelArrow)
+					jQueryleftPanelArrow.addClass('showOnHover');
+				if(jQueryrightPanelArrow)
+					jQueryrightPanelArrow.addClass('showOnHover');
 			}
 
-			$contentDivsContainer.resize(positionPanelArrows);
+			jQuerycontentDivsContainer.resize(positionPanelArrows);
 
 			// Make responsive to changes in dimensions
-			$tabsListWrapper.resize(function(){
+			jQuerytabsListWrapper.resize(function(){
 				resizeTabsList();
 				resizePanels();
 			});
 			
 			// Resize content container height if inner panels change
 			setInterval(function(){
-				var $panel = $contentDivsContainer.children('.selected');
-				if($panel.outerHeight() > $contentDivsContainer.outerHeight() && heightLock)
-					resizeContentContainer($panel);
+				var jQuerypanel = jQuerycontentDivsContainer.children('.selected');
+				if(jQuerypanel.outerHeight() > jQuerycontentDivsContainer.outerHeight() && heightLock)
+					resizeContentContainer(jQuerypanel);
 			}, 100);
 
 			resizeTabsList();
 
 			// Hide tabs wrapper if option if false
 			if(!settings.tabs)
-				$tabsListWrapper.hide();
+				jQuerytabsListWrapper.hide();
 
 			// Auto play
 			if(settings.autoplay)
@@ -212,7 +212,7 @@
 			// Panel arrows
 
 			// Mousehweel
-			$container.bind('mousewheel', function(event, delta, deltaX, deltaY) {
+			jQuerycontainer.bind('mousewheel', function(event, delta, deltaX, deltaY) {
 			    if(delta > 0)
 			    	plugin.next();
 			   	else if(delta < 0)
@@ -230,34 +230,34 @@
 		plugin.selectTab = function(tab){
 			heightLock = false;
 
-			// Find $targetPanel, the panel to show
-			var $clicked = (typeof tab === 'number') ? $tabsList.children("li:nth-child("+tab+")") : tab;
-			var targetId = ($clicked.find('a').attr('href')).substr(1);
-			var $targetPanel = $contentDivsContainer.children("#"+targetId);
+			// Find jQuerytargetPanel, the panel to show
+			var jQueryclicked = (typeof tab === 'number') ? jQuerytabsList.children("li:nth-child("+tab+")") : tab;
+			var targetId = (jQueryclicked.find('a').attr('href')).substr(1);
+			var jQuerytargetPanel = jQuerycontentDivsContainer.children("#"+targetId);
 
 			// Update selected tab
 			plugin.selectedTab = (typeof tab === 'number') ? tab : tab.index()+1;
 
-			// Resize the main contant container to the size of $targetPanel
-			resizeContentContainer($targetPanel);
+			// Resize the main contant container to the size of jQuerytargetPanel
+			resizeContentContainer(jQuerytargetPanel);
 
 			// Lock selections until transitions finished
 			selectLock = true;
 
 			// Direction to slide panel on hide
-			var direction = ($tabsList.find('.selected').index() < $clicked.index()) ? 'left' : 'right';
+			var direction = (jQuerytabsList.find('.selected').index() < jQueryclicked.index()) ? 'left' : 'right';
 			
 			// Update selected classes
-			$clicked.siblings().removeClass('selected');
-			if(settings.classes.tabActive != '') $clicked.siblings().removeClass(settings.classes.tabActive);
-			$clicked.addClass('selected').addClass(settings.classes.tabActive);
+			jQueryclicked.siblings().removeClass('selected');
+			if(settings.classes.tabActive != '') jQueryclicked.siblings().removeClass(settings.classes.tabActive);
+			jQueryclicked.addClass('selected').addClass(settings.classes.tabActive);
 			
 			// Hide and show appropriate panels
-			hidePanel($contentDivsContainer.children(".ui-slider-tab-content:visible"), direction);
-			showPanel($targetPanel);
+			hidePanel(jQuerycontentDivsContainer.children(".ui-slider-tab-content:visible"), direction);
+			showPanel(jQuerytargetPanel);
 
-			// Slide tabs so that they fit in $tabsListContainer
-			fitTabInContainer($clicked);
+			// Slide tabs so that they fit in jQuerytabsListContainer
+			fitTabInContainer(jQueryclicked);
 
 			// Select the proper indicator
 			selectIndicator();
@@ -281,77 +281,77 @@
 			}
 		};
 
-		// Slide tabs left/right within $tabsListContainer
+		// Slide tabs left/right within jQuerytabsListContainer
 		plugin.slideTabs = function(direction, length){
-			var margin = parseInt($tabsList.css('margin-left'));
+			var margin = parseInt(jQuerytabsList.css('margin-left'));
 			var newMargin = margin;
 
 			// Reset 'edge' classes on tab arrows
-			$leftTabArrow.removeClass('edge');
-			$rightTabArrow.removeClass('edge');
+			jQueryleftTabArrow.removeClass('edge');
+			jQueryrightTabArrow.removeClass('edge');
 
 			// Calculate delta to slide by
 			if(direction=='right') newMargin += length;
 			else if(direction=='left') newMargin -= length;
 			if(newMargin >= 0) {
 				newMargin = 0;
-				$leftTabArrow.addClass('edge');
+				jQueryleftTabArrow.addClass('edge');
 			}
 			else if(newMargin <= minMargin){
 				newMargin = minMargin;
-				$rightTabArrow.addClass('edge');
+				jQueryrightTabArrow.addClass('edge');
 			}
 
 			// Animate
-			$tabsList.animate({'margin-left': newMargin}, settings.tabSlideSpeed);
+			jQuerytabsList.animate({'margin-left': newMargin}, settings.tabSlideSpeed);
 		};
 
 		// Show panel indicators
 		// Create indicators if they don't exist yet
 		plugin.showIndicators = function(){
-			if(!$indicators){
-				$indicators = $("<div class='ui-slider-tabs-indicator-container'>");
-				for(var i = 0; i < $contentDivs.length; i++){
-					$indicators.append("<div class='ui-slider-tabs-indicator'></div>");
+			if(!jQueryindicators){
+				jQueryindicators = jQuery("<div class='ui-slider-tabs-indicator-container'>");
+				for(var i = 0; i < jQuerycontentDivs.length; i++){
+					jQueryindicators.append("<div class='ui-slider-tabs-indicator'></div>");
 				}
-				$contentDivsContainer.append($indicators);
+				jQuerycontentDivsContainer.append(jQueryindicators);
 			}
 			else
-				$indicators.show();
+				jQueryindicators.show();
 		};
 
 		// Hide panel indicators
 		plugin.hideIndicators = function(){
-			if($indicators)
-				$indicators.hide();
+			if(jQueryindicators)
+				jQueryindicators.hide();
 		};
 
 		// Show arrows that slide tabs left and right
 		plugin.showTabArrows = function(){
 			if(!settings.tabArrows)
 				return;
-			$leftTabArrow.show();
-			$rightTabArrow.show();
-			$tabsListContainer.css('margin', '0 '+settings.tabArrowWidth+'px');
+			jQueryleftTabArrow.show();
+			jQueryrightTabArrow.show();
+			jQuerytabsListContainer.css('margin', '0 '+settings.tabArrowWidth+'px');
 		};
 
 		// Hide arrows that slide tabs left and right
 		plugin.hideTabArrows = function(){
-			$leftTabArrow.hide();
-			$rightTabArrow.hide();
-			$tabsListContainer.css('margin', '0');
+			jQueryleftTabArrow.hide();
+			jQueryrightTabArrow.hide();
+			jQuerytabsListContainer.css('margin', '0');
 		};
 
 		// Show panel arrows
 		plugin.showPanelArrows = function(){
-			if($leftPanelArrow) $leftPanelArrow.show();
-			if($rightPanelArrow) $rightPanelArrow.show();
+			if(jQueryleftPanelArrow) jQueryleftPanelArrow.show();
+			if(jQueryrightPanelArrow) jQueryrightPanelArrow.show();
 		};
 
 		// Hide panel arrows
 		plugin.hidePanelArrows = function(){
-			if($leftPanelArrow) $leftPanelArrow.hide();
-			if($rightPanelArrow) $rightPanelArrow.hide();
+			if(jQueryleftPanelArrow) jQueryleftPanelArrow.hide();
+			if(jQueryrightPanelArrow) jQueryrightPanelArrow.hide();
 		};
 
 		/*
@@ -360,19 +360,19 @@
 
 		// Add the selected class to the plugin.selectedTab tab. Remove from all others.
 		var selectIndicator = function(){
-			if(settings.indicators && $indicators){
-				var $indicator = $indicators.children("div:nth-child("+plugin.selectedTab+")");
-				$indicator.siblings().removeClass('selected');
-				$indicator.addClass('selected');
+			if(settings.indicators && jQueryindicators){
+				var jQueryindicator = jQueryindicators.children("div:nth-child("+plugin.selectedTab+")");
+				jQueryindicator.siblings().removeClass('selected');
+				jQueryindicator.addClass('selected');
 			}	
 		};
 
-		// 	Slide tabs inside of $tabsListContainer so that the selected one fits inside
+		// 	Slide tabs inside of jQuerytabsListContainer so that the selected one fits inside
 		var fitTabInContainer = function(tab){
 			var tabOffset = tab.offset(),
-				containerOffset = $tabsListContainer.offset(),
+				containerOffset = jQuerytabsListContainer.offset(),
 				leftOffset = tabOffset.left - containerOffset.left,
-				rightOffset = (containerOffset.left + $tabsListContainer.outerWidth()) - (tabOffset.left + tab.outerWidth() );
+				rightOffset = (containerOffset.left + jQuerytabsListContainer.outerWidth()) - (tabOffset.left + tab.outerWidth() );
 			
 			if(leftOffset < 0)
 				plugin.slideTabs('right', -leftOffset);
@@ -386,24 +386,24 @@
 			// Position content divs
 			if(settings.transition == 'slide')
 				// Move panels left/right basedon their index relative to the selected panel
-				$tabsList.children('li').each(function(index, el){
-					var selectedIndex = $tabsList.children('.selected').index(),
-						thisIndex = $(el).index();
-					var panel = $contentDivsContainer.children('#'+$(el).find('a').attr('href').substr(1));
+				jQuerytabsList.children('li').each(function(index, el){
+					var selectedIndex = jQuerytabsList.children('.selected').index(),
+						thisIndex = jQuery(el).index();
+					var panel = jQuerycontentDivsContainer.children('#'+jQuery(el).find('a').attr('href').substr(1));
 					if(selectedIndex < thisIndex)
-						panel.css({left: $contentDivsContainer.width()+'px'});
+						panel.css({left: jQuerycontentDivsContainer.width()+'px'});
 					else if(selectedIndex > thisIndex)
-						panel.css({left: '-'+$contentDivsContainer.width()+'px'});
+						panel.css({left: '-'+jQuerycontentDivsContainer.width()+'px'});
 					else
 						panel.addClass(settings.classes.panelActive);
 				});
 			
 			if(settings.transition == 'fade')
 				// Set opacity to correct value for non selected panels.
-				$tabsList.children('li').each(function(index, el){
-					var selectedIndex = $tabsList.children('.selected').index(),
-						thisIndex = $(el).index();
-					var panel = $contentDivsContainer.children('#'+$(el).find('a').attr('href').substr(1));
+				jQuerytabsList.children('li').each(function(index, el){
+					var selectedIndex = jQuerytabsList.children('.selected').index(),
+						thisIndex = jQuery(el).index();
+					var panel = jQuerycontentDivsContainer.children('#'+jQuery(el).find('a').attr('href').substr(1));
 					if(selectedIndex != thisIndex)
 						panel.css({opacity: 0});
 					else
@@ -446,7 +446,7 @@
 			else var trans = settings.transition;
 
 			// Animate the panel out
-			panel.animate(panelAnimationCSS($contentDivsContainer.width())['hide'][trans], settings.transitionSpeed, settings.transitionEasing, function(){
+			panel.animate(panelAnimationCSS(jQuerycontentDivsContainer.width())['hide'][trans], settings.transitionSpeed, settings.transitionEasing, function(){
 				panel.hide();
 				panel.removeClass('selected');
 				//if(settings.classes.panelActive != '') panel.removeClass(settings.classes.panelActive);
@@ -463,7 +463,7 @@
 			panel.addClass(settings.classes.panelActive).addClass('selected');
 
 			// Then animate css properties
-			panel.animate(panelAnimationCSS($contentDivsContainer.width())['show'][settings.transition], settings.transitionSpeed, settings.transitionEasing, function(){
+			panel.animate(panelAnimationCSS(jQuerycontentDivsContainer.width())['show'][settings.transition], settings.transitionSpeed, settings.transitionEasing, function(){
 				selectLock = false;
 				heightLock = true;
 				reorderPanels();
@@ -474,7 +474,7 @@
 		// params:  target (int) is the new height
 		var resizeContentContainer = function(target){
 			if(!settings.height)
-				$contentDivsContainer.animate({
+				jQuerycontentDivsContainer.animate({
 					height: actualHeight(target)
 				}, 200);
 		};
@@ -483,49 +483,49 @@
 		var positionPanelArrows = function(){
 			if(settings.panelArrows){
 				// Initialize them if you need to
-				if(!$leftPanelArrow && !$rightPanelArrow){
-					$leftPanelArrow = $("<div class='ui-slider-tabs-leftPanelArrow'>").click(function(){
+				if(!jQueryleftPanelArrow && !jQueryrightPanelArrow){
+					jQueryleftPanelArrow = jQuery("<div class='ui-slider-tabs-leftPanelArrow'>").click(function(){
 						plugin.prev();
 					});
-					$rightPanelArrow = $("<div class='ui-slider-tabs-rightPanelArrow'>").click(function(){
+					jQueryrightPanelArrow = jQuery("<div class='ui-slider-tabs-rightPanelArrow'>").click(function(){
 						plugin.next();
 					});
 
-					$leftPanelArrow.appendTo($contentDivsContainer);
-					$rightPanelArrow.appendTo($contentDivsContainer);
+					jQueryleftPanelArrow.appendTo(jQuerycontentDivsContainer);
+					jQueryrightPanelArrow.appendTo(jQuerycontentDivsContainer);
 				}
 
 				// Set correct CSS 'top' attribute of each panel arrow
-				$rightPanelArrow.css({
-					"top": $contentDivsContainer.height()/2 - $rightPanelArrow.outerHeight()/2
+				jQueryrightPanelArrow.css({
+					"top": jQuerycontentDivsContainer.height()/2 - jQueryrightPanelArrow.outerHeight()/2
 				});
-				$leftPanelArrow.css({
-					"top": $contentDivsContainer.height()/2 - $leftPanelArrow.outerHeight()/2
+				jQueryleftPanelArrow.css({
+					"top": jQuerycontentDivsContainer.height()/2 - jQueryleftPanelArrow.outerHeight()/2
 				});
 			}
 		};
 
-		// Change the width of $tabsList to the sum of the outer widths of all tabs
+		// Change the width of jQuerytabsList to the sum of the outer widths of all tabs
 		var resizeTabsList = function(){
 			// Calculate total width
 			var width = 0;
-			$tabsList.children().each(function(index, element){
-				width += $(element).outerWidth(true);
+			jQuerytabsList.children().each(function(index, element){
+				width += jQuery(element).outerWidth(true);
 			});
-			// Set new width of $tabsList
-			$tabsList.width(width);
+			// Set new width of jQuerytabsList
+			jQuerytabsList.width(width);
 
 			// Update minMargin. Hide tab arrows if no overflow
-			if($tabsListContainer.width() < width && settings.tabArrows){
+			if(jQuerytabsListContainer.width() < width && settings.tabArrows){
 				plugin.showTabArrows();
-				minMargin = $tabsListContainer.width() - width;
+				minMargin = jQuerytabsListContainer.width() - width;
 			}
 			else plugin.hideTabArrows();
 		}
 
 		// Resize indiviual panels to the width of the new container
 		var resizePanels = function(){
-			$contentDivs.width($contentDivsContainer.width() - ($contentDivs.outerWidth() - $contentDivs.width()));
+			jQuerycontentDivs.width(jQuerycontentDivsContainer.width() - (jQuerycontentDivs.outerWidth() - jQuerycontentDivs.width()));
 		};
 
 		// Get height of a hidden element
@@ -553,15 +553,15 @@
 	/*
 	 * Handle input. Call public functions and initializers
 	 */
-	$.fn.sliderTabs = function( data ) {
+	jQuery.fn.sliderTabs = function( data ) {
 		return this.each(function(){
-			var _this = $(this),
+			var _this = jQuery(this),
 				plugin = _this.data('sliderTabs');
 
 			// Method calling logic
 		    if (!plugin) {
 		    	// If no plugin, initialize it
-				plugin = new $.sliderTabs(this, data);
+				plugin = new jQuery.sliderTabs(this, data);
 				_this.data('sliderTabs', plugin);
 				return plugin;
 			}
@@ -584,12 +584,12 @@
  * https://github.com/jquery/jquery-ui
  */
 
-$.extend($.easing,
+jQuery.extend(jQuery.easing,
 {
     def: 'easeOutQuad',
     swing: function (x, t, b, c, d) {
-        //alert($.easing.default);
-        return $.easing[$.easing.def](x, t, b, c, d);
+        //alert(jQuery.easing.default);
+        return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
     },
     easeInQuad: function (x, t, b, c, d) {
         return c*(t/=d)*t + b;
@@ -698,7 +698,7 @@ $.extend($.easing,
         return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
     },
     easeInBounce: function (x, t, b, c, d) {
-        return c - $.easing.easeOutBounce (x, d-t, 0, c, d) + b;
+        return c - jQuery.easing.easeOutBounce (x, d-t, 0, c, d) + b;
     },
     easeOutBounce: function (x, t, b, c, d) {
         if ((t/=d) < (1/2.75)) {
@@ -712,8 +712,8 @@ $.extend($.easing,
         }
     },
     easeInOutBounce: function (x, t, b, c, d) {
-        if (t < d/2) return $.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
-        return $.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+        if (t < d/2) return jQuery.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
+        return jQuery.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
     }
 });
 
@@ -739,17 +739,17 @@ $.extend($.easing,
  * Requires: 1.2.2+
  */
 
-(function($) {
+(function(jQuery) {
 
 var types = ['DOMMouseScroll', 'mousewheel'];
 
-if ($.event.fixHooks) {
+if (jQuery.event.fixHooks) {
     for ( var i=types.length; i; ) {
-        $.event.fixHooks[ types[--i] ] = $.event.mouseHooks;
+        jQuery.event.fixHooks[ types[--i] ] = jQuery.event.mouseHooks;
     }
 }
 
-$.event.special.mousewheel = {
+jQuery.event.special.mousewheel = {
     setup: function() {
         if ( this.addEventListener ) {
             for ( var i=types.length; i; ) {
@@ -771,7 +771,7 @@ $.event.special.mousewheel = {
     }
 };
 
-$.fn.extend({
+jQuery.fn.extend({
     mousewheel: function(fn) {
         return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
     },
@@ -784,7 +784,7 @@ $.fn.extend({
 
 function handler(event) {
     var orgEvent = event || window.event, args = [].slice.call( arguments, 1 ), delta = 0, returnValue = true, deltaX = 0, deltaY = 0;
-    event = $.event.fix(orgEvent);
+    event = jQuery.event.fix(orgEvent);
     event.type = "mousewheel";
     
     // Old school scrollwheel delta
@@ -807,7 +807,7 @@ function handler(event) {
     // Add event and delta to the front of the arguments
     args.unshift(event, delta, deltaX, deltaY);
     
-    return ($.event.dispatch || $.event.handle).apply(this, args);
+    return (jQuery.event.dispatch || jQuery.event.handle).apply(this, args);
 }
 
 })(jQuery);
@@ -827,4 +827,4 @@ function handler(event) {
  * Dual licensed under the MIT and GPL licenses.
  * http://benalman.com/about/license/
  */
-(function($,h,c){var a=$([]),e=$.resize=$.extend($.resize,{}),i,k="setTimeout",j="resize",d=j+"-special-event",b="delay",f="throttleWindow";e[b]=250;e[f]=true;$.event.special[j]={setup:function(){if(!e[f]&&this[k]){return false}var l=$(this);a=a.add(l);$.data(this,d,{w:l.width(),h:l.height()});if(a.length===1){g()}},teardown:function(){if(!e[f]&&this[k]){return false}var l=$(this);a=a.not(l);l.removeData(d);if(!a.length){clearTimeout(i)}},add:function(l){if(!e[f]&&this[k]){return false}var n;function m(s,o,p){var q=$(this),r=$.data(this,d);r.w=o!==c?o:q.width();r.h=p!==c?p:q.height();n.apply(this,arguments)}if($.isFunction(l)){n=l;return m}else{n=l.handler;l.handler=m}}};function g(){i=h[k](function(){a.each(function(){var n=$(this),m=n.width(),l=n.height(),o=$.data(this,d);if(m!==o.w||l!==o.h){n.trigger(j,[o.w=m,o.h=l])}});g()},e[b])}})(jQuery,this);
+(function(jQuery,h,c){var a=jQuery([]),e=jQuery.resize=jQuery.extend(jQuery.resize,{}),i,k="setTimeout",j="resize",d=j+"-special-event",b="delay",f="throttleWindow";e[b]=250;e[f]=true;jQuery.event.special[j]={setup:function(){if(!e[f]&&this[k]){return false}var l=jQuery(this);a=a.add(l);jQuery.data(this,d,{w:l.width(),h:l.height()});if(a.length===1){g()}},teardown:function(){if(!e[f]&&this[k]){return false}var l=jQuery(this);a=a.not(l);l.removeData(d);if(!a.length){clearTimeout(i)}},add:function(l){if(!e[f]&&this[k]){return false}var n;function m(s,o,p){var q=jQuery(this),r=jQuery.data(this,d);r.w=o!==c?o:q.width();r.h=p!==c?p:q.height();n.apply(this,arguments)}if(jQuery.isFunction(l)){n=l;return m}else{n=l.handler;l.handler=m}}};function g(){i=h[k](function(){a.each(function(){var n=jQuery(this),m=n.width(),l=n.height(),o=jQuery.data(this,d);if(m!==o.w||l!==o.h){n.trigger(j,[o.w=m,o.h=l])}});g()},e[b])}})(jQuery,this);
