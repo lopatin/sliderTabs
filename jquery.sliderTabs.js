@@ -79,7 +79,7 @@
 			jQuerycontentDivs = jQuerycontainer.children("div").addClass('ui-slider-tab-content').remove();
 			
 			// Tabs
-			jQuerytabsList = jQuerycontainer.children("ul").addClass('ui-slider-tabs-list').remove();
+			jQuerytabsList = jQuerycontainer.children("ul,ol").addClass('ui-slider-tabs-list').remove();
 			jQuerytabsList.children("li").remove().appendTo(jQuerytabsList);
 			plugin.count = jQuerytabsList.children('li').length;
 			jQuerytabsListWrapper = jQuery("<div class='ui-slider-tabs-list-wrapper'>");
