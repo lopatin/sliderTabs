@@ -212,7 +212,7 @@
 			// Panel arrows
 
 			// Mousehweel
-			if(settings.autoplay) {
+			if(settings.mousewheel) {
 				$container.bind('mousewheel', function(event, delta, deltaX, deltaY) {
 				    if(delta > 0)
 				    	plugin.next();
