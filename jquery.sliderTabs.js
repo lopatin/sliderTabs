@@ -1,11 +1,12 @@
 /*
- * jQuery SliderTabs v1.1
+ * jQuery SliderTabs v1.2
  * http://lopatin.github.com/sliderTabs
  *
  * Copyright 2012, Alex Lopatin
  * Free to use under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
+ * Edit By javad (www.mjm3d.com)
  */
 
 
@@ -15,6 +16,9 @@
 	 */
 	$.sliderTabs = function(container, options){
 		var plugin = this;
+		
+		/* Add by javad */
+		var autoplayInterval;
 
 		var defaults = {
 			autoplay: false,
@@ -44,7 +48,11 @@
 			transition: 'slide',
 			transitionEasing: 'easeOutCubic',
 			transitionSpeed: 500,
-			width: null
+			width: null,
+			
+			/* Add by javad */
+			mouseoverStop: true,
+			mouseleavePlay: true,
 		};
 
 		// jQuery objects of important elements
@@ -207,7 +215,7 @@
 
 			// Auto play
 			if(settings.autoplay)
-				setInterval(plugin.next, settings.autoplay);
+				autoplayInterval = setInterval(plugin.next, settings.autoplay);
 
 			// Panel arrows
 
@@ -219,6 +227,22 @@
 			   		plugin.prev();
 			   	return false;
 			});
+			
+			/* Add by javad */
+			// Stop, if mouse over
+			if(settings.mouseoverStop) {
+				$container.mouseover(function() {
+					plugin.stop();
+				});
+			}
+			
+			/* Add by javad */
+			// play, if mouse leave
+			if(settings.mouseleavePlay) {
+				$container.mouseleave(function() {
+					plugin.play();
+				});
+			}
 		}
 
 		/*
@@ -544,6 +568,20 @@
 			element.css(prevCSS);
 			return height;
 		};
+		
+		/* Add by javad */
+		// Play slider
+		plugin.play = function(speed=null){
+			if(!speed)	speed = settings.autoplay;
+			if(speed)	autoplayInterval = setInterval(plugin.next, speed);
+		}
+
+		/* Add by javad */
+		// Stop slider
+		plugin.stop = function(){
+			if(autoplayInterval)
+				clearInterval(autoplayInterval);
+		}
 		
 
 		// Initialize the plugin
