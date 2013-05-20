@@ -571,7 +571,7 @@
 		
 		/* Add by javad */
 		// Play slider
-		plugin.play = function(speed=null){
+		plugin.play = function(speed){
 			if(!speed)	speed = settings.autoplay;
 			if(speed)	autoplayInterval = setInterval(plugin.next, speed);
 		}
