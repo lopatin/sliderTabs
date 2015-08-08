@@ -44,7 +44,8 @@
 			transition: 'slide',
 			transitionEasing: 'easeOutCubic',
 			transitionSpeed: 500,
-			width: null
+			width: null,
+			pauseOnHover:false
 		};
 
 		// jQuery objects of important elements
@@ -207,7 +208,7 @@
 
 			// Auto play
 			if(settings.autoplay)
-				setInterval(plugin.next, settings.autoplay);
+				var instanceAutoPlay = setInterval(plugin.next, settings.autoplay);
 
 			// Panel arrows
 
@@ -219,6 +220,17 @@
 			   		plugin.prev();
 			   	return false;
 			});
+			
+			//Pause the slider on mouse hover
+			if(settings.pauseOnHover)
+			{
+				$container.hover(function(){
+						clearInterval(instanceAutoPlay);
+				},
+				function(){
+						instanceAutoPlay = setInterval(plugin.next, settings.autoplay);
+				});
+			}
 		}
 
 		/*
